@@ -35,7 +35,7 @@ class SegHelper(object):
         idx_sB = sB
         idx_sF = sF
 
-        lab = color.rgb2lab(img)
+        lab = color.rgb2lab(img, channel_axis = -1)
         back = lab[sB[1]:sB[3],sB[0]:sB[2]]
         fore = lab[sF[1]:sF[3],sF[0]:sF[2]]
          
