@@ -38,7 +38,7 @@ class SegSlides(object):
     '''
     def doLABSegmentation(self, img):
         imsize = img.shape[0:2]
-        lab = color.rgb2lab(img)
+        lab = color.rgb2lab(img, channel_axis = -1)
         L = lab[...,0]
         A = lab[...,1]
         B = lab[...,2]
@@ -144,7 +144,7 @@ class SegSlides(object):
     def doSnakesSegmentation(self,img,mask):
 
         if img.ndim > 1:
-            img = color.rgb2gray(img)
+            img = color.rgb2gray(img, channel_axis = -1)
 
         labels = meas.label(mask)
         props = meas.regionprops(labels)
@@ -247,7 +247,7 @@ class SegSlides(object):
 
     def doKMeansSegmentation(self,img):
 
-        lab = color.rgb2lab(img)
+        lab = color.rgb2lab(img, channel_axis = -1)
         back = lab[self.idx_sB[1]:self.idx_sB[3], self.idx_sB[0]:self.idx_sB[2]]
         fore = lab[self.idx_sF[1]:self.idx_sF[3], self.idx_sF[0]:self.idx_sF[2]]
         mLf = np.mean(np.ravel(fore[..., 0]))
